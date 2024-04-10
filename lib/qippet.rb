@@ -13,6 +13,7 @@ module Qippet
 
     def initialize
       @font_family = "helvetica"
+      @font_size = 2
     end
   end
 
