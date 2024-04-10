@@ -6,7 +6,7 @@ RSpec.describe Qippet do
   end
 
   it "configuration reflects when set with configure" do
-    font_family = 'new_roman'
+    font_family = "new_roman"
     Qippet.configure do |config|
       config.font_family = font_family
     end
