@@ -5,7 +5,11 @@ RSpec.describe Qippet do
     expect(Qippet::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(true).to eq(true)
+  it "configuration reflects when set with configure" do
+    font_family = 'new_roman'
+    Qippet.configure do |config|
+      config.font_family = font_family
+    end
+    expect(font_family).to eq(Qippet.configuration.font_family)
   end
 end
