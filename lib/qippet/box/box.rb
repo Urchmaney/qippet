@@ -1,8 +1,8 @@
-module Qippet
-  class Box
+# frozen_string_literal: true
 
-    def render
-      
-    end
+module Qippet
+  # Abstract Class definiton for Box
+  class Box
+    def render; end
   end
 end

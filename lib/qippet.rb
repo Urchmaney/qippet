@@ -1,7 +1,7 @@
 # frozen_string_literal: true
+
 require "active_support"
 require_relative "qippet/version"
-
 
 # Main object for Qippet. This is the main entry point for
 # the application.
@@ -10,7 +10,6 @@ module Qippet
 
   autoload :Xml, "qippet/extraction/xml"
   autoload :Extract
-  
   class Error < StandardError; end
 
   # Configuration class Object

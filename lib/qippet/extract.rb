@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module Qippet
+  # Extraction Module
   module Extraction
     extend ActiveSupport::Autoload
 

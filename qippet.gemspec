@@ -31,9 +31,9 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "rmagick", "~> 5.5"
-  spec.add_dependency "nokogiri"
   spec.add_dependency "activesupport"
+  spec.add_dependency "nokogiri"
+  spec.add_dependency "rmagick", "~> 5.5"
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
