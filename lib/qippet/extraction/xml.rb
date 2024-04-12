@@ -8,8 +8,8 @@ module Qippet
 
       # Class Method
       module ClassMethods
-        def extract_from_xml
-          ""
+        def extract_from_xml_content(content = "")
+          content
         end
       end
     end

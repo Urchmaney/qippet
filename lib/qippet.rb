@@ -8,7 +8,7 @@ require_relative "qippet/version"
 module Qippet
   extend ActiveSupport::Autoload
 
-  autoload :Xml, "qippet/extraction/xml"
+  # autoload :Xml, "qippet/extraction/xml"
   autoload :Extract
   class Error < StandardError; end
 
@@ -31,6 +31,14 @@ module Qippet
 
     def configure
       yield configuration
+    end
+
+    def generate(path, output_file)
+      yield configuration if block_given?
+
+      extracted = Extraction::Extract.from_file(path)
+      print "Error: File not found" if extracted.nil?
+      output_file
     end
   end
 end
