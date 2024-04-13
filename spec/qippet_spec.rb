@@ -25,4 +25,11 @@ RSpec.describe Qippet do
   it "should output error if file does not exist" do
     expect { Qippet.generate("random.rs", "") }.to output("Error: File not found").to_stdout
   end
+
+  it "Should call extract from xml if file exists" do
+    expect(Qippet::Extraction::Extract).to receive("extract_from_xml_content")
+    output_file = "image.png"
+    file_path = "spec/assets/pop.xml"
+    expect(Qippet.generate(file_path, output_file)).to eq(output_file)
+  end
 end

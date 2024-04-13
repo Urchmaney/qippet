@@ -13,6 +13,7 @@ module Qippet
 
       class << self
         def from_file(path)
+          path = Pathname.new(Dir.pwd).join(path)
           content = read_file(path)
           return nil if content.nil?
 
