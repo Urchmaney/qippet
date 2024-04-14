@@ -27,7 +27,15 @@ RSpec.describe Qippet do
   end
 
   it "Should call extract from xml if file exists" do
-    expect(Qippet::Extraction::Extract).to receive("extract_from_xml_content")
+    expect(Qippet::Extraction::Extract).to receive(:extract_from_xml_content)
+    output_file = "image.png"
+    file_path = "spec/assets/pop.xml"
+    expect(Qippet.generate(file_path, output_file)).to eq(output_file)
+  end
+end
+
+RSpec.describe "Qippet Reading File" do
+  it "should return with value" do
     output_file = "image.png"
     file_path = "spec/assets/pop.xml"
     expect(Qippet.generate(file_path, output_file)).to eq(output_file)
