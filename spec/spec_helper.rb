@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require "qippet"
-require "qippet/extract"
+require "active_support"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -13,4 +12,10 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  config.mock_with :rspec do |mocks|
+    mocks.verify_partial_doubles = true
+  end
+
+  config.filter_run_when_matching :focus
 end
