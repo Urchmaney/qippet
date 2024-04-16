@@ -3,7 +3,6 @@
 require "qippet/builder"
 require "qippet/extract"
 require "qippet/box/container_box"
-# autoload :ContainerBox, "qippet/box/container_box"
 
 RSpec.describe Qippet::Builder do
   it "should build qippet image" do

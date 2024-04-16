@@ -24,8 +24,6 @@ module Qippet
 
         def read_file(path)
           File.read(path)
-        rescue Errno::ENOENT
-          nil
         end
       end
     end

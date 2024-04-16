@@ -19,7 +19,7 @@ module Qippet
       end
 
       def setup_node(node)
-        return unless node.content.strip.present?
+        return unless node.presence && node.content.strip.present?
 
         node_box = get_node_box(node.name.presence)
         return node_box if node.children.empty?

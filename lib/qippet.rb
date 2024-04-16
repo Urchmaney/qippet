@@ -37,7 +37,10 @@ module Qippet
       yield configuration if block_given?
 
       extracted = Extraction::Extract.from_file(path)
-      print "Error: File not found" if extracted.nil?
+      node = Builder.setup_node(extracted[:root])
+      puts "File does not contain a valid Qippet structure" if node.nil?
+
+      node&.render
       output_file
     end
   end
