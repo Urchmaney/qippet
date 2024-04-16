@@ -5,14 +5,16 @@ module Qippet
   class Box
     attr_reader :node
 
-    def children
-      @children ||= []
-    end
-
     def add_child(child)
       children << child
     end
 
-    def render; end
+    def render
+      children.each(&:render)
+    end
+
+    def children
+      @children ||= []
+    end
   end
 end

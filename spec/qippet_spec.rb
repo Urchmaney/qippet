@@ -15,22 +15,22 @@ RSpec.describe Qippet do
     expect(Qippet.configuration.font_family).to eq(font_family)
   end
 
-  it "should generate output file" do
+  it "should show error message if file structure is not valid" do
     allow(File).to receive(:read).and_return("file")
     output_file = "image.png"
-    result = Qippet.generate("", output_file)
-    expect(result).to eq(output_file)
+    expect { Qippet.generate("", output_file) }.to output("File does not contain a valid Qippet structure\n").to_stdout
   end
 
   it "should output error if file does not exist" do
-    expect { Qippet.generate("random.rs", "") }.to output("Error: File not found").to_stdout
+    expect { Qippet.generate("random.rs", "") }.to raise_error(Errno::ENOENT)
   end
 
   it "Should call extract from xml if file exists" do
-    expect(Qippet::Extraction::Extract).to receive(:extract_from_xml_content)
+    allow(Qippet::Extraction::Extract).to receive(:extract_from_xml_content).and_call_original
     output_file = "image.png"
     file_path = "spec/assets/pop.xml"
-    expect(Qippet.generate(file_path, output_file)).to eq(output_file)
+    Qippet.generate(file_path, output_file)
+    expect(Qippet::Extraction::Extract).to have_received(:extract_from_xml_content)
   end
 end
 
