@@ -36,8 +36,8 @@ module Qippet
     def generate(path, output_file)
       yield configuration if block_given?
 
-      extracted = Extraction::Extract.from_file(path)
-      node = Builder.setup_node(extracted[:root])
+      extracted = Extract.from_file(path)
+      node = Builder.build(extracted)
       puts "File does not contain a valid Qippet structure" if node.nil?
 
       node&.render

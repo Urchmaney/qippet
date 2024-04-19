@@ -3,6 +3,8 @@
 require_relative "./box"
 
 module Qippet
-  class ContainerBox < Box
+  module Boxes
+    class ContainerBox < Box
+    end
   end
 end

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "qippet/box/container_box"
+require "qippet/boxes/container_box"
 
-RSpec.describe Qippet::Box do
+RSpec.describe Qippet::Boxes do
   it "should call children render when render is called" do
-    boxes = [Qippet::ContainerBox.new, Qippet::ContainerBox.new, Qippet::ContainerBox.new]
+    boxes = [Qippet::Boxes::ContainerBox.new, Qippet::Boxes::ContainerBox.new, Qippet::Boxes::ContainerBox.new]
     boxes[0].add_child boxes[1]
     boxes[0].add_child boxes[2]
 
