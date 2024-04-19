@@ -9,6 +9,7 @@ module Qippet
     attr_reader :node
 
     PADDING = 20
+    PADDING_X = 10
 
     def add_child(child)
       children << child
@@ -35,17 +36,17 @@ module Qippet
     def arrange_children_in_image(image, children_images)
       acc = 10
       children_images.each do |child_image|
-        image = image.composite child_image, acc, 10, Magick::OverCompositeOp
-        acc += child_image.columns
+        image = image.composite child_image, PADDING_X, acc, Magick::OverCompositeOp
+        acc += child_image.rows
       end
       image
     end
 
-    def image_width(children_images)
+    def image_height(children_images)
       children_images.sum(&:columns) + PADDING
     end
 
-    def image_height(children_images)
+    def image_width(children_images)
       (children_images.max { |a, b| a.rows <=> b.rows }&.rows || 0) + PADDING
     end
 
