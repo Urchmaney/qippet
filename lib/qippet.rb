@@ -41,6 +41,7 @@ module Qippet
       puts "File does not contain a valid Qippet structure" if node.nil?
 
       node&.render
+      # result.write(output_file)
       output_file
     end
   end
