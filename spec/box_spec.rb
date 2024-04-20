@@ -18,7 +18,7 @@ RSpec.describe Qippet::Boxes do
 end
 
 RSpec.describe Qippet::Boxes::CodeBox do
-  it "should extract code from file", :focus do
+  it "should extract code from file" do
     code_box = Qippet::Boxes::CodeBox.new
     allow(code_box).to receive(:fetch_code_from_file).and_call_original
     code_box.render

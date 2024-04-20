@@ -16,7 +16,7 @@ module Qippet
 
       def fetch_code_from_file
         code_file_path = "/code/check.rb"
-        code_content = Extract.from_file(code_file_path)
+        Extract.from_file(code_file_path)
       end
 
       def render
