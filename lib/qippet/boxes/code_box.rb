@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "./box"
+require "qippet/extract"
 
 module Qippet
   module Boxes
@@ -13,9 +14,15 @@ module Qippet
         fetch_code_from_file
       end
 
-      # def fetch_code_from_file
-      #   code_file_path = "/code/check.rb"
-      # end
+      def fetch_code_from_file
+        code_file_path = "/code/check.rb"
+        Extract.from_file(code_file_path)
+      end
+
+      def render
+        fetch_code_from_file
+        super
+      end
     end
   end
 end
