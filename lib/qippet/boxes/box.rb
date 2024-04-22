@@ -7,7 +7,7 @@ module Qippet
   module Boxes
     # Abstract Class definiton for Box
     class Box
-      attr_reader :node
+      attr_reader :node, :image
 
       PADDING = 20
       PADDING_X = 10
@@ -30,14 +30,14 @@ module Qippet
         children_images = children.map(&:render)
         height = image_height(children_images)
         width = image_width(children_images)
-        image = Magick::Image.new(width, height)
-        arrange_children_in_image(image, children_images)
+        @image = Magick::Image.new(width, height)
+        arrange_children_in_image(children_images)
       end
 
-      def arrange_children_in_image(image, children_images)
+      def arrange_children_in_image(children_images)
         acc = 10
         children_images.each do |child_image|
-          image = image.composite child_image, PADDING_X, acc, Magick::OverCompositeOp
+          image.composite! child_image, PADDING_X, acc, Magick::OverCompositeOp
           acc += child_image.rows
         end
         image
