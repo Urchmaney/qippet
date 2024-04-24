@@ -5,6 +5,7 @@ PATH
       activesupport
       nokogiri
       rmagick (~> 5.5)
+      rouge
 
 GEM
   remote: https://rubygems.org/
@@ -48,6 +49,7 @@ GEM
     rmagick (5.5.0)
       observer (~> 0.1)
       pkg-config (~> 1.4)
+    rouge (4.2.1)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
