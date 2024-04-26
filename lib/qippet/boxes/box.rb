@@ -9,8 +9,8 @@ module Qippet
     class Box
       attr_reader :node, :image
 
-      PADDING = 20
-      PADDING_X = 10
+      PADDING = 40
+      PADDING_X = 30
 
       def add_child(child)
         children << child
