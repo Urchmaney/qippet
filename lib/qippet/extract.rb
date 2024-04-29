@@ -9,7 +9,7 @@ module Qippet
   # Extract Class
   class Extract
     class << self
-      GITHUB_BASE_API_URL = "https://api.github.com/repos/".freeze
+      GITHUB_BASE_API_URL = "https://api.github.com/repos/"
 
       def from_file(path)
         path = Pathname.new(Dir.pwd).join(path)
