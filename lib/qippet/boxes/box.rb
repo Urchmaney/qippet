@@ -12,6 +12,10 @@ module Qippet
       PADDING = 40
       PADDING_X = 30
 
+      def initialize
+        self.class.setup_attributes
+      end
+
       def add_child(child)
         children << child
       end
@@ -22,6 +26,17 @@ module Qippet
 
       def children
         @children ||= []
+      end
+
+      def add_attributes(attributes_value)
+        allowed_attributes = attributes_value.filter { |key, _| self.class::ALLOWED_ATTRIBUTES.include?(key.to_sym) }
+        allowed_attributes.each { |key, val| instance_variable_set "@#{key}", val }
+      end
+
+      def self.setup_attributes
+        return unless const_defined? "ALLOWED_ATTRIBUTES"
+
+        self::ALLOWED_ATTRIBUTES.each { |attr| attr_accessor attr }
       end
 
       private

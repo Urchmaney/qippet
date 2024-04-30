@@ -25,6 +25,8 @@ module Qippet
 
       attr_reader :code_content, :code_lines, :show_line, :writer, :tokenizer, :formatter
 
+      ALLOWED_ATTRIBUTES = %i[source path].freeze
+
       TAB_SPACE = 20
       CODE_LINE_HEIGHT = 19
       CODE_CHAR_WIDTH = 8
@@ -51,9 +53,7 @@ module Qippet
       private
 
       def fetch_code_from_file
-        code_file_path = "./Rakefile"
-        @code_content = Extract.from_file(code_file_path)
-        # @code_content = Extract.from_github
+        @code_content = source == "github" ? Extract.from_github(path) : Extract.from_file(path)
         return nil if code_content.nil?
 
         @code_lines = code_content.split("\n")

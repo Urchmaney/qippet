@@ -33,6 +33,7 @@ module Qippet
 
         node.content.strip!
         node_box = get_node_box(node.name.presence)
+        add_box_attributes(node_box, node.attribute_nodes)
         return node_box if node.children.empty?
 
         node.children.each do |child|
@@ -41,6 +42,10 @@ module Qippet
         end
 
         node_box
+      end
+
+      def add_box_attributes(box, attribute_nodes)
+        box.add_attributes(attribute_nodes.map { |attr| [attr.name, attr.value] })
       end
 
       def get_node_box(node_name)
