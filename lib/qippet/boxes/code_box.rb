@@ -53,6 +53,7 @@ module Qippet
       def fetch_code_from_file
         code_file_path = "./Rakefile"
         @code_content = Extract.from_file(code_file_path)
+        # @code_content = Extract.from_github
         return nil if code_content.nil?
 
         @code_lines = code_content.split("\n")
@@ -117,7 +118,7 @@ module Qippet
       end
 
       def image_width(*)
-        ((code_lines.max { |a, b| a.length <=> b.length }&.length || 0) * 10) + 2 * PADDING
+        code_lines.map { |line| line.blank? ? 0 : writer.get_type_metrics(line).width }.max + (2 * PADDING)
       end
     end
   end
