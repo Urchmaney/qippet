@@ -52,10 +52,22 @@ RSpec.describe Qippet::Boxes::CodeBox do
     code_box.render
     expect(code_box).to have_received(:fetch_code_from_source)
   end
+end
 
-  # it "should throw error with wrong range attribute", :focus do
-  #   allow(Net::HTTP).to receive(:get_response).and_return(Github.mock_response)
-  #   code_box = Qippet::Boxes::CodeBox.new
-  #   allow(code_box).to receive(:fetch_code_from_source).and_call_original
-  # end
+RSpec.describe "Qippet::Boxes::CodeBox Attribute" do
+  it "should throw error with invalid range attribute" do
+    code_box = Qippet::Boxes::CodeBox.new
+    code_box.add_attributes([[:path, "./Rakefile"], [:range, "f"]])
+    expect { code_box.render }.to raise_error(ArgumentError)
+    code_box.add_attributes([[:path, "./Rakefile"], [:range, "2,f"]])
+    expect { code_box.render }.to raise_error(ArgumentError)
+    code_box.add_attributes([[:path, "./Rakefile"], [:range, "0 0"]])
+    expect { code_box.render }.to raise_error(ArgumentError)
+  end
+
+  it "should not throw error with valid range attribute" do
+    code_box = Qippet::Boxes::CodeBox.new
+    code_box.add_attributes([[:path, "./Rakefile"], [:range, "3, 6"]])
+    expect { code_box.render }.not_to raise_error
+  end
 end
