@@ -61,10 +61,10 @@ module Qippet
       end
 
       def extract_line_range
-        return unless range
+        return if range.nil?
 
-        ranges = range.split(",").first(2).map { |val| Integer(val) }
-        @code_lines = @code_lines[ranges[0]..ranges[1]]
+        ranges = range.split(",").first(2).map { |val| Integer(val.strip) }
+        @code_lines = @code_lines[(ranges[0] || 0)..(ranges[1] || @code_lines.length)]
       end
 
       def write_code_on_image
