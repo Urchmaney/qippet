@@ -39,17 +39,23 @@ RSpec.describe Qippet::Boxes::CodeBox do
   it "should extract code from file" do
     code_box = Qippet::Boxes::CodeBox.new
     code_box.add_attributes([[:path, "./Rakefile"]])
-    allow(code_box).to receive(:fetch_code_from_file).and_call_original
+    allow(code_box).to receive(:fetch_code_from_source).and_call_original
     code_box.render
-    expect(code_box).to have_received(:fetch_code_from_file)
+    expect(code_box).to have_received(:fetch_code_from_source)
   end
 
   it "should extract code from github" do
     allow(Net::HTTP).to receive(:get_response).and_return(Github.mock_response)
     code_box = Qippet::Boxes::CodeBox.new
-    allow(code_box).to receive(:fetch_code_from_file).and_call_original
+    allow(code_box).to receive(:fetch_code_from_source).and_call_original
     code_box.add_attributes([[:source, "github"], [:path, ""]])
     code_box.render
-    expect(code_box).to have_received(:fetch_code_from_file)
+    expect(code_box).to have_received(:fetch_code_from_source)
   end
+
+  # it "should throw error with wrong range attribute", :focus do
+  #   allow(Net::HTTP).to receive(:get_response).and_return(Github.mock_response)
+  #   code_box = Qippet::Boxes::CodeBox.new
+  #   allow(code_box).to receive(:fetch_code_from_source).and_call_original
+  # end
 end

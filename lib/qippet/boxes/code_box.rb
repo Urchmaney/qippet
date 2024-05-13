@@ -25,7 +25,7 @@ module Qippet
 
       attr_reader :code_content, :code_lines, :show_line, :writer, :tokenizer, :formatter
 
-      ALLOWED_ATTRIBUTES = %i[source path].freeze
+      ALLOWED_ATTRIBUTES = %i[source path range].freeze
 
       TAB_SPACE = 20
       CODE_LINE_HEIGHT = 19
@@ -41,7 +41,8 @@ module Qippet
       end
 
       def render
-        fetch_code_from_file
+        fetch_code_from_source
+        extract_line_range
         return nil if code_content.nil?
 
         setup_syntax_highliter
@@ -52,17 +53,24 @@ module Qippet
 
       private
 
-      def fetch_code_from_file
+      def fetch_code_from_source
         @code_content = source == "github" ? Extract.from_github(path) : Extract.from_file(path)
         return nil if code_content.nil?
 
         @code_lines = code_content.split("\n")
       end
 
+      def extract_line_range
+        return unless range
+
+        ranges = range.split(",").first(2).map { |val| Integer(val) }
+        @code_lines = @code_lines[ranges[0]..ranges[1]]
+      end
+
       def write_code_on_image
         @row_position = PADDING + CODE_LINE_HEIGHT
 
-        formatter.format(tokenizer.lex(code_content)) do |line, index|
+        formatter.format(tokenizer.lex(code_lines.join("\n"))) do |line, index|
           @column_position = PADDING
           add_line_number(index + 1) if show_line
 
