@@ -31,10 +31,10 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "activesupport"
-  spec.add_dependency "nokogiri"
+  spec.add_dependency "activesupport", "~> 7.1", ">= 7.1.3.2"
+  spec.add_dependency "nokogiri", "~> 1.16", ">= 1.16.5"
   spec.add_dependency "rmagick", "~> 5.5"
-  spec.add_dependency "rouge"
+  spec.add_dependency "rouge", "~> 4.2", ">= 4.2.1"
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
