@@ -10,6 +10,7 @@ module Qippet
 
   # autoload :Xml, "qippet/extraction/xml"
   autoload :Extract
+  autoload :Builder
   class Error < StandardError; end
 
   # Configuration class Object

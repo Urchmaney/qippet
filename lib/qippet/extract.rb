@@ -4,6 +4,7 @@ require "uri"
 require "net/http"
 require "base64"
 require "json"
+require "pathname"
 
 module Qippet
   # Extract Class
