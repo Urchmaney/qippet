@@ -3,4 +3,4 @@
 
 require "qippet"
 
-Qippet.generate("./spec/assets/pop.xml", "output.png")
+Qippet.generate("../lib/assets/default.xml", "#{__dir__}/output.png")

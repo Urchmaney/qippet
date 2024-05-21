@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "rmagick"
 require "qippet"
 require "qippet/builder/xml"
 
@@ -24,6 +25,7 @@ RSpec.describe Qippet do
 
   it "Should call extract from xml if file exists" do
     allow(Qippet::Builder::Xml).to receive(:build).and_call_original
+    allow_any_instance_of(Magick::Image).to receive(:write)
     output_file = "image.png"
     file_path = "spec/assets/pop.xml"
     Qippet.generate(file_path, output_file)
@@ -33,6 +35,7 @@ end
 
 RSpec.describe "Qippet Reading File" do
   it "should return with value" do
+    allow_any_instance_of(Magick::Image).to receive(:write)
     output_file = "image.png"
     file_path = "spec/assets/pop.xml"
     expect(Qippet.generate(file_path, output_file)).to eq(output_file)
