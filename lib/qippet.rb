@@ -39,10 +39,15 @@ module Qippet
 
       extracted = Extract.from_file(path)
       node = Builder.build(extracted)
-      puts "File does not contain a valid Qippet structure" if node.nil?
 
-      node&.render
-      # result.write(output_file)
+      if node.nil?
+        puts "File does not contain a valid Qippet structure"
+        return nil
+      end
+
+      result = node&.render
+
+      result.write(output_file)
       output_file
     end
   end
