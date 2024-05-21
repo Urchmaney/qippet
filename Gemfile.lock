@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    qippet (0.1.1)
+    qippet (0.1.2)
       activesupport (~> 7.1, >= 7.1.3.2)
       nokogiri (~> 1.16, >= 1.16.5)
       rmagick (~> 5.5)
