@@ -14,7 +14,7 @@ RSpec.describe Qippet do
     Qippet.configure do |config|
       config.font_family = font_family
     end
-    expect(Qippet.configuration.font_family).to eq(font_family)
+    expect(Qippet.config.font_family).to eq(font_family)
   end
 
   it "should show error message if file structure is not valid" do

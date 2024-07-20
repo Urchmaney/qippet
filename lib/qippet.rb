@@ -7,31 +7,19 @@ require_relative "qippet/version"
 # the application.
 module Qippet
   extend ActiveSupport::Autoload
+  include ActiveSupport::Configurable
 
+  config_accessor :font_family, :font_size
   # autoload :Xml, "qippet/extraction/xml"
   autoload :Extract
   autoload :Builder
   class Error < StandardError; end
 
-  # Configuration class Object
-  class Configuration
-    attr_accessor :font_family
-
-    def initialize
-      @font_family = "helvetica"
-      @font_size = 15
-    end
-  end
-
   class << self
-    @configuration = nil
-
-    def configuration
-      @configuration ||= Configuration.new
-    end
-
     def configure
-      yield configuration
+      return unless block_given?
+
+      yield config
     end
 
     def generate(path, output_file)
