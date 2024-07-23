@@ -16,14 +16,8 @@ module Qippet
   class Error < StandardError; end
 
   class << self
-    def configure
-      return unless block_given?
-
-      yield config
-    end
-
     def generate(path, output_file)
-      yield configuration if block_given?
+      yield config if block_given?
 
       extracted = Extract.from_file(path)
       node = Builder.build(extracted)
