@@ -84,7 +84,7 @@ module Qippet
 
       def write_token(token_with_color)
         color, token_type, token = token_with_color
-        token.prepend("\\") if token_type.shortname.blank?
+        token.prepend("\\") if token_type.shortname.to_s.strip.empty?
 
         escape_special_characters(token)
         token_width = writer.get_type_metrics(token).width
@@ -126,7 +126,7 @@ module Qippet
       end
 
       def image_width(*)
-        code_lines.map { |line| line.blank? ? 0 : writer.get_type_metrics(line).width }.max + (2 * PADDING)
+        code_lines.map { |line| line.to_s.strip.empty? ? 0 : writer.get_type_metrics(line).width }.max + (2 * PADDING)
       end
     end
   end
