@@ -9,7 +9,6 @@ module Qippet
   module Builder
     # Builder from XML content to box
     module Xml
-      extend ActiveSupport::Autoload
       extend self
 
       def build(content = "")
@@ -29,16 +28,16 @@ module Qippet
       end
 
       def setup_node(node)
-        return nil unless node.presence
+        return nil if node.nil?
 
         node.content.strip!
-        node_box = get_node_box(node.name.presence)
+        node_box = get_node_box(node&.name)
         add_box_attributes(node_box, node.attribute_nodes)
         return node_box if node.children.empty?
 
         node.children.each do |child|
           box = setup_node(child)
-          node_box.add_child box if box.present?
+          node_box.add_child box unless box.nil?
         end
 
         node_box

@@ -1,20 +1,15 @@
 # frozen_string_literal: true
 
-require "active_support"
 require_relative "qippet/version"
+require_relative "./qippet/builder"
+require_relative "./qippet/extract"
+require_relative "./qippet/config"
 
 # Main object for Qippet. This is the main entry point for
 # the application.
 module Qippet
-  extend ActiveSupport::Autoload
-  include ActiveSupport::Configurable
-
-  config_accessor :font_family, :font_size
-  # autoload :Xml, "qippet/extraction/xml"
-  autoload :Extract
-  autoload :Builder
   class Error < StandardError; end
-
+  extend Qippet::Config
   class << self
     def generate(path, output_file)
       yield config if block_given?

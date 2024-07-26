@@ -1,18 +1,11 @@
 # frozen_string_literal: true
 
-require "active_support"
-require "active_support/core_ext/object/blank"
+require_relative "./builder/xml"
 
 # Qippet
 module Qippet
-  extend ActiveSupport::Autoload
-
   # Builder Class
   module Builder
-    extend ActiveSupport::Autoload
-
-    autoload :Xml
-
     class << self
       def build(content)
         Xml.build(content)

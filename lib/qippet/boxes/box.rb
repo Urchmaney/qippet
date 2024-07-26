@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "rmagick"
-require "active_support/core_ext/enumerable"
 
 module Qippet
   module Boxes
