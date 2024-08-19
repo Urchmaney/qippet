@@ -37,6 +37,7 @@ module Qippet
         path = Pathname.new path
 
         return path if path.absolute?
+
         Pathname.getwd / path
       end
     end

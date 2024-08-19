@@ -3,8 +3,6 @@
 
 require "qippet"
 
-current_dir = Pathname.getwd
-
 layout_name = ARGV[0]
 
 output_name = ARGV[1] || "output.png"
