@@ -13,8 +13,7 @@ module Qippet
       GITHUB_BASE_API_URL = "https://api.github.com/repos/"
 
       def from_file(path)
-        path = Pathname.new(Dir.pwd).join(path)
-        read_file(path)
+        read_file absolute_path(path)
       end
 
       def from_github(path = "rails/rails/contents/version.rb")
@@ -32,6 +31,13 @@ module Qippet
         File.read(path)
       rescue Errno::ENOENT, Errno::EISDIR
         nil
+      end
+
+      def absolute_path(path)
+        path = Pathname.new path
+
+        return path if path.absolute?
+        Pathname.getwd / path
       end
     end
   end

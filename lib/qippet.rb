@@ -11,10 +11,10 @@ module Qippet
   class Error < StandardError; end
   extend Qippet::Config
   class << self
-    def generate(path, output_file)
+    def generate(layout_path = nil, output_path = "output.png")
       yield config if block_given?
-
-      extracted = Extract.from_file(path)
+      
+      extracted = Extract.from_file(layout_path)
       node = Builder.build(extracted)
 
       if node.nil?
@@ -24,8 +24,9 @@ module Qippet
 
       result = node&.render
 
-      result.write(output_file)
-      output_file
+
+      result.write(output_path)
+      output_path
     end
   end
 end

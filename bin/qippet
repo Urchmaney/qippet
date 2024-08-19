@@ -3,4 +3,10 @@
 
 require "qippet"
 
-Qippet.generate("../lib/assets/default.xml", "#{__dir__}/output.png")
+current_dir = Pathname.getwd
+
+layout_name = ARGV[0]
+
+output_name = ARGV[1] || "output.png"
+
+Qippet.generate layout_name, output_name
